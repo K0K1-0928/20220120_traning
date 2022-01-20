@@ -2,8 +2,8 @@ package jp.evolveit.kouki_murakami.demo.repository;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class LoginUserRepository {
 
     public LoginUserRepository() {
         this.users = new HashMap<>();
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
         User user = new User("user", passwordEncoder.encode("password"),
                 Collections.unmodifiableList(List.of(new SimpleGrantedAuthority("USER"))));
         users.put(user.getUsername(), user);
