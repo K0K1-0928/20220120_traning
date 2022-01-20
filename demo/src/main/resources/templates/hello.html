@@ -9,7 +9,9 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <h1 th:text="|Hello ${username} !|"></h1>
+    <p th:text="|username: ${username}|"></p>
+    <p th:text="|password: ${password}|"></p>
     <form th:action="@{/logout}" method="post">
       <input type="submit" value="Sign Out" />
     </form>
