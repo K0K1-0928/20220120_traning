@@ -15,8 +15,9 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public ModelAndView hello(HttpServletRequest request, ModelAndView mav) {
-        String username = request.getRemoteUser();
-        UserDetails userDetails = loginUserDetailsService.loadUserByUsername(username);
+        String ru = request.getRemoteUser();
+        UserDetails userDetails = loginUserDetailsService.loadUserByUsername(ru);
+        String username = userDetails.getUsername();
         String password = userDetails.getPassword();
         mav.addObject("username", username);
         mav.addObject("password", password);
